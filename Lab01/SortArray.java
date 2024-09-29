@@ -1,0 +1,66 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package baitapcoban;
+import java.util.*;
+/**
+ *
+ * @author admin
+ */
+public class SortArray {
+    public static int partition(int arr[], int begin, int end) {
+    int pivot = arr[end];
+    int i = (begin-1);
+
+    for (int j = begin; j < end; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+
+            int swapTemp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = swapTemp;
+        }
+    }
+
+    int swapTemp = arr[i+1];
+    arr[i+1] = arr[end];
+    arr[end] = swapTemp;
+
+    return i+1;
+}
+    
+public static void quickSort(int arr[], int begin, int end) {
+    if (begin < end) {
+        int partitionIndex = partition(arr, begin, end);
+
+        quickSort(arr, begin, partitionIndex-1);
+        quickSort(arr, partitionIndex+1, end);
+    }
+}
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner ( System.in);
+        int N = sc.nextInt();
+        int[] arr = new int[N];
+        for ( int i = 0; i < N; i++)
+        {
+            arr[i] = sc.nextInt();
+        }
+        quickSort ( arr, 0, N-1);
+        for ( int x : arr)
+        {
+            System.out.print(x+ " ");
+        }
+        System.out.println("");
+        int sum = 0;
+        for ( int x : arr)
+        {
+            sum += x;
+        }
+        System.out.println("The sum of array: " + sum);
+        System.out.println("The average value of array: " + sum*1.0/N);
+        
+    }
+}
