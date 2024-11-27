@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 
 public class GarbageCreator {
     public static void main(String[] args) throws IOException {
-        String filename = "C:/Users/admin/Story/chapter1.txt";
+        String filename = "Lab02/OtherProjects/text";
         byte[] inputBytes = { 0 };
         long startTime, endTime;
         inputBytes = Files.readAllBytes(Paths.get(filename));
