@@ -1,13 +1,13 @@
+package hust.soict.hedspi.aims.cart;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
 import java.util.*;
-/**
- *
- * @author admin
- */
+
 public class Cart {
     public static final int MAX_DVD_NUMBER = 20;
     private int qtyOrdered;
@@ -17,22 +17,61 @@ public class Cart {
         qtyOrdered = 0;
     }
     
-    public int addDigitalVideoDisc(DigitalVideoDisc dvd) {
+    public void addDigitalVideoDisc(DigitalVideoDisc dvd) {
         if (qtyOrdered == MAX_DVD_NUMBER) {
             System.out.println("The cart is full.");
-            return 0;
+            return;
         } else {
             order[qtyOrdered] = dvd;
             qtyOrdered ++;
             System.out.println(dvd.getTitle()+ " has been added");
-            return 1;
+            return;
         }
     }
     
-    public int removeDigitalVideoDisc(DigitalVideoDisc dvd) {
+    public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
+        for ( DigitalVideoDisc dvd : dvdList)
+        {
+                if (qtyOrdered == MAX_DVD_NUMBER) {
+                System.out.println("The cart is full.");
+                return;
+            } else {
+                order[qtyOrdered] = dvd;
+                qtyOrdered ++;
+                System.out.println(dvd.getTitle()+ " has been added");
+            }
+        }
+        return;
+    }
+    
+        public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+            if (qtyOrdered + 2 <= MAX_DVD_NUMBER) {
+                order[qtyOrdered] = dvd1;
+                qtyOrdered ++;
+                System.out.println(dvd1.getTitle()+ " has been added");
+                
+                order[qtyOrdered] = dvd2;
+                qtyOrdered ++;
+                System.out.println(dvd2.getTitle()+ " has been added");
+            } else if (qtyOrdered + 1 <= MAX_DVD_NUMBER) {
+                order[qtyOrdered] = dvd1;
+                qtyOrdered ++;
+                System.out.println(dvd1.getTitle()+ " has been added");
+            }
+            else
+            {
+                System.out.println("The cart is full.");
+            }
+    }
+    
+    
+    
+    
+    
+    public void removeDigitalVideoDisc(DigitalVideoDisc dvd) {
         if(order[0] ==  null) {
             System.out.println("Your cart is empty!");
-            return 0;
+            return;
         }
         for(int i = 0; i < qtyOrdered;i++) {
             if(order[i].equals(dvd)) {
@@ -42,11 +81,11 @@ public class Cart {
                 order[qtyOrdered-1] = null;
                 qtyOrdered--;
                 System.out.println("Remove " + '\"'+ dvd.getTitle() + '\"' + " successfully!");
-                return 1;
+                return;
             }
         }
         System.out.println("No DVD match!");
-        return 0;
+        return;
     }
     
     
@@ -98,9 +137,22 @@ public class Cart {
 
     public void printOrder()
     {
+        System.out.println("***********************CART***********************\nOrdered Items");
         for(int i = 0;i < qtyOrdered; i++) {
-                System.out.println(order[i].toString()); 
+                System.out.println(i+"."+order[i].toString()); 
         }
+        System.out.println("Total cost: " + this.totalCost());
+        System.out.println("***************************************************");
     }
+    
+    public boolean isMatch (String title)
+    {
+         for(int i = 0;i < qtyOrdered; i++) {
+                if ( title.compareToIgnoreCase(order[i].getTitle()) == 1) return true;
+        }
+        return false;
+    }
+    
+    
     
 }
