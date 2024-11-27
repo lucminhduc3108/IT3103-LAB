@@ -1,24 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- *
-import java.util.*;
-/**
- *
- * @author admin
- */
+package hust.soict.hedspi.aims.disc;
+
+
 public class DigitalVideoDisc {
     private String title;
     private String category;
     private String director;
     private int length;
     private float cost;
-
+    // 5.Classifier Member and Instance Member
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
+    
+    public DigitalVideoDisc(String title) {
+        this.title = title;
+        this.id = ++nbDigitalVideoDiscs;
+    }
+    
     public DigitalVideoDisc(String title, String category, float cost) {
         this.title = title;
         this.category = category;
         this.cost = cost;
+        this.id = ++nbDigitalVideoDiscs;
     }
 
     public DigitalVideoDisc( String title, String category, String director, int length, float cost) {
@@ -27,6 +29,7 @@ public class DigitalVideoDisc {
         this.director = director;
         this.length = length;
         this.cost = cost;
+        this.id = ++nbDigitalVideoDiscs;
     }
     
     public String getTitle() {
@@ -65,13 +68,15 @@ public class DigitalVideoDisc {
         this.length = length;
     }
 
-    public void setCost(int cost) {
+    public void setCost(float cost) {
         this.cost = cost;
     }
 
     @Override
     public String toString() {
-        return "DigitalVideoDisc{" + "title=" + title + ", category=" + category + ", director=" + director + ", length=" + length + ", cost=" + cost + '}';
+        return "DVD - " + this.getTitle() + " - " + this.getCategory() 
+                + " - " + this.getDirector() + " - " + this.getLength() + ": " + this.getCost()+"$";
+
     }
 
     
