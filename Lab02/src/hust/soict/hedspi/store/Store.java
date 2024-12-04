@@ -1,40 +1,52 @@
+
+
 package hust.soict.hedspi.aims.store;
-
-
-import hust.soict.hedspi.aims.disc.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
 import java.util.*;
 public class Store {
-    private LinkedList<DigitalVideoDisc> itemsInStore = new LinkedList<DigitalVideoDisc>();
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
     public Store() {
     }
 
-    private boolean checkDVD(DigitalVideoDisc disc) {
-        for (DigitalVideoDisc digitalVideoDisc : itemsInStore) {
-            if (digitalVideoDisc.equals(disc)) {
-                return true;
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    } 
+    
+    public Media searchMedia(String title)
+    {
+        for ( Media x : itemsInStore)
+        {
+            if ( x.getTitle().compareTo(title)==0)
+            {
+                return x;
             }
         }
-        return false;
+        return null;
     }
 
-    public void removeDVD(DigitalVideoDisc disc) {
-        if(checkDVD(disc)) {
-            itemsInStore.remove(disc);
-            System.out.println( disc.getTitle() + " 've been deleted from the store !");
-        } else {
-            System.out.println("There is no "+ disc.getTitle() + " in the store !");
+    public void addMedia(Media med) {
+        if ( itemsInStore.contains(med))
+        {
+            System.out.println("Already in the store!");
+        }
+        else
+        {
+            itemsInStore.add(med);
+            System.out.println("Successfully added!");
         }
     }
-
-    public void addDVD(DigitalVideoDisc disc) {
-        if(!checkDVD(disc)) {
-            itemsInStore.add(disc);
-            System.out.println( disc.getTitle() + " 've been added to the store !");
-        } else {
-            System.out.println( disc.getTitle() + " 'already exists in the store !");
+    
+    public void removeMedia(Media med) {
+        if ( itemsInStore.contains(med))
+        {
+            itemsInStore.remove(med);
+            System.out.println("Successfully removed!");
         }
-
+        else
+        {       
+            System.out.println("Not in the store!");
+        }
     }
-
 }
+
