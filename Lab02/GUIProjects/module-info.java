@@ -1,9 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
 module GUIProject {
 	requires java.desktop;
 	requires javafx.fxml;
