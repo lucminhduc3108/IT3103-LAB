@@ -1,9 +1,3 @@
-/**
- * 
- */
-/**
- * 
- */
 module AimsProject {
 	requires java.desktop;
 	requires javafx.swing;
